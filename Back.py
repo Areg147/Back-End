@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
-
+import os
 app = Flask(__name__)
 CORS(app)
 
@@ -42,4 +42,5 @@ def list_info():
     return jsonify([{'id': i.id, 'name': i.name, 'email': i.email} for i in infos])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5001))  # Use 5000 as a fallback for local development
+    app.run(host='0.0.0.0', port=port)  # Bind to the appropriate port
