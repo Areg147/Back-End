@@ -25,6 +25,7 @@ def home():
 
 @app.route('/add', methods=['POST'])
 def add_info():
+    print("Areg")
     data = request.json
     session = Session()
     new_info = Info(name=data['name'], email=data['email'])
